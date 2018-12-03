@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import 'purecss';
-import 'animate.css';
 import Table from './Components/Table';
 import Controls from './Components/Controls';
 import { NotTested } from './Constants/status';
@@ -21,9 +19,9 @@ class App extends Component {
     }
   }
 
-  onChange = (e, id) => {
+  onChange = (e, index) => {
     const newState = this.state;
-    newState.rows[id][e.target.name] = e.target.value;
+    newState.rows[index][e.target.name] = e.target.value;
     this.setState(newState);
     window.localStorage['test-cases'] = JSON.stringify(newState);
   }
@@ -37,7 +35,8 @@ class App extends Component {
 
   onAddNewRow = () => {
     const newState = this.state;
-    newState.rows.push({ case: "", notes: "", status: NotTested });
+    const id = newState.rows.length > 1 ? newState.rows.length : 1;
+    newState.rows.push({id, case: "", notes: "", status: NotTested });
     this.setState(newState);
   }
 
@@ -92,6 +91,7 @@ class App extends Component {
             {
               this.state.rows.map(x =>
                 <StatusDot
+                  key={x.id}
                   status={x.status}
                   toolTipText={x.case}
                   animatedClassName="fadeInLeft faster"

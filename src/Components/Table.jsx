@@ -21,6 +21,7 @@ class Table extends Component {
               {
                 this.props.rows.map((x, i) =>
                   <Row
+                    key={x.id}
                     id={i}
                     notes={x.notes}
                     status={x.status}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import TextArea from "./TextArea";
 import { NotTested, Passed, Failed } from "../Constants/status";
 import StatusDot from "./StatusDot";
