@@ -27,9 +27,42 @@ class Row extends Component {
         <td>
           <TextArea
             onChange={e => this.props.onChange(e, this.props.id)}
-            value={this.props.notes}
-            name="notes"
+            value={this.props.expectedResult}
+            name="expectedResult"
           />
+        </td>
+        <td>
+          <TextArea
+            onChange={e => this.props.onChange(e, this.props.id)}
+            value={this.props.actualResult}
+            name="actualResult"
+          />
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            name="iPhoneTested"
+            onChange={e => this.props.onChange(e, this.props.id)}
+            checked={this.props.iPhoneTested}
+          /> iPhone<br />
+          <input
+            type="checkbox"
+            name="zebraTested"
+            onChange={e => this.props.onChange(e, this.props.id)}
+            checked={this.props.zebraTested}
+          /> Zebra<br />
+          <input
+            type="checkbox"
+            name="iPadTested"
+            onChange={e => this.props.onChange(e, this.props.id)}
+            checked={this.props.iPadTested}
+          /> iPad<br />
+          <input
+            type="checkbox"
+            name="desktopTested"
+            onChange={e => this.props.onChange(e, this.props.id)}
+            checked={this.props.desktopTested}
+          /> Desktop
         </td>
         <td className="table-status-column">
           <div>

@@ -25,6 +25,9 @@ class Controls extends Component {
           <button className="button-secondary pure-button u-margin-left" onClick={this.props.onExportTxt}>
             Export txt
           </button>
+          <button className="button-secondary pure-button u-margin-left" onClick={this.props.onExportCsv}>
+            Export CSV
+          </button>
           <input type="file" id="fileInput" className="u-display-none" onChange={this.onFileImportChange}/>
         </div>
       </div>);

@@ -5,6 +5,7 @@ import Controls from './Components/Controls';
 import { NotTested } from './Constants/status';
 import StatusDot from './Components/StatusDot';
 import { isValidJson } from './utils/isValidJson';
+import { csvFileHeader } from './Constants/csvFileHeader';
 
 class App extends Component {
   constructor() {
@@ -21,7 +22,11 @@ class App extends Component {
 
   onChange = (e, index) => {
     const newState = this.state;
-    newState.rows[index][e.target.name] = e.target.value;
+    if (e.target.type === "checkbox") {
+      newState.rows[index][e.target.name] = !newState.rows[index][e.target.name];
+    } else {
+      newState.rows[index][e.target.name] = e.target.value;
+    }
     this.setState(newState);
     window.localStorage['test-cases'] = JSON.stringify(newState);
   }
@@ -35,8 +40,18 @@ class App extends Component {
 
   onAddNewRow = () => {
     const newState = this.state;
-    const id = newState.rows.length > 1 ? newState.rows.length : 1;
-    newState.rows.push({id, case: "", notes: "", status: NotTested });
+    const id = newState.rows.length + 1;
+    newState.rows.push({
+      id,
+      case: "",
+      expectedResult: "",
+      actualResult: "",
+      iPhoneTested: false,
+      zebraTested: false,
+      iPadTested: false,
+      desktopTested: false,
+      status: NotTested
+    });
     this.setState(newState);
   }
 
@@ -49,15 +64,28 @@ class App extends Component {
     el.click();
     document.body.removeChild(el);
   }
-  exportJsonData = () => {
+  exportJson = () => {
     this.exportData("test-cases.json", JSON.stringify(this.state, null, '\t'));
   }
-  exportTxtData = () => {
-    var txtFileContent = this.state.rows.map((x, i) => `${x.case} \r\nNotes: ${x.notes}\r\nStatus: ${x.status}\r\n-----`).join("\r\n");
+  exportTxt = () => {
+    var txtFileContent = this.state.rows.map(x => `${x.case}\r\nExpected result: ${x.expectedResult}\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`).join("\r\n");
     this.exportData("test-cases.txt", txtFileContent);
   }
+  exportCsv = () => {
+    let csvFileContent = csvFileHeader;
+    
+    this.state.rows.forEach(rowObj => {
+      let str = '';
+      for(var prop in rowObj){
+        str += rowObj[prop] + ',';
+      }
+      str += '\r\n';
+      csvFileContent += str;
+    })
+    this.exportData("test-cases.csv", csvFileContent);
+  }
 
-  importData = content => {
+  importJson = content => {
     if (!isValidJson(content)) {
       alert('that\'s not valid json, is it mate');
       return;
@@ -101,11 +129,11 @@ class App extends Component {
         </div>
         <Controls
           onAddNewRow={this.onAddNewRow}
-          onExportJson={this.exportJsonData}
-          onExportTxt={this.exportTxtData}
-          onImportData={this.importData}
+          onExportJson={this.exportJson}
+          onExportTxt={this.exportTxt}
+          onImportData={this.importJson}
           onResetData={this.clearCache}
-
+          onExportCsv={this.exportCsv}
         />
         <Table
           rows={this.state.rows}

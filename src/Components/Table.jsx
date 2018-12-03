@@ -12,20 +12,26 @@ class Table extends Component {
               <tr>
                 <th>#</th>
                 <th>Test case</th>
-                <th>Notes</th>
-                <th></th>
+                <th>Expected result</th>
+                <th>Actual result</th>
+                <th>Devices</th>
+                <th>Status</th>
               </tr>
             </thead>
-
             <tbody id="test-case-table-body">
               {
                 this.props.rows.map((x, i) =>
                   <Row
                     key={x.id}
                     id={i}
-                    notes={x.notes}
-                    status={x.status}
                     case={x.case}
+                    expectedResult={x.expectedResult}
+                    actualResult={x.actualResult}
+                    iPhoneTested={x.iPhoneTested}
+                    zebraTested={x.zebraTested}
+                    iPadTested={x.iPadTested}
+                    desktopTested={x.desktopTested}
+                    status={x.status}
                     onChange={this.props.onChange}
                     onDelete={this.props.onDelete}
                   />)
