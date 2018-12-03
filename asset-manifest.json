@@ -1,14 +1,15 @@
 {
-  "main.css": "/test-case-tracker/static/css/main.71b89f7d.chunk.css",
-  "main.js": "/test-case-tracker/static/js/main.5ed3e836.chunk.js",
-  "main.js.map": "/test-case-tracker/static/js/main.5ed3e836.chunk.js.map",
-  "static/js/1.2dd891c4.chunk.js": "/test-case-tracker/static/js/1.2dd891c4.chunk.js",
-  "static/js/1.2dd891c4.chunk.js.map": "/test-case-tracker/static/js/1.2dd891c4.chunk.js.map",
+  "main.css": "/test-case-tracker/static/css/main.88907610.chunk.css",
+  "main.js": "/test-case-tracker/static/js/main.2c9cbf96.chunk.js",
+  "main.js.map": "/test-case-tracker/static/js/main.2c9cbf96.chunk.js.map",
+  "static/css/1.1addf242.chunk.css": "/test-case-tracker/static/css/1.1addf242.chunk.css",
+  "static/js/1.d099f879.chunk.js": "/test-case-tracker/static/js/1.d099f879.chunk.js",
+  "static/js/1.d099f879.chunk.js.map": "/test-case-tracker/static/js/1.d099f879.chunk.js.map",
   "runtime~main.js": "/test-case-tracker/static/js/runtime~main.36af4eba.js",
   "runtime~main.js.map": "/test-case-tracker/static/js/runtime~main.36af4eba.js.map",
-  "static/media/logo.svg": "/test-case-tracker/static/media/logo.5d5d9eef.svg",
-  "static/css/main.71b89f7d.chunk.css.map": "/test-case-tracker/static/css/main.71b89f7d.chunk.css.map",
+  "static/css/1.1addf242.chunk.css.map": "/test-case-tracker/static/css/1.1addf242.chunk.css.map",
+  "static/css/main.88907610.chunk.css.map": "/test-case-tracker/static/css/main.88907610.chunk.css.map",
   "index.html": "/test-case-tracker/index.html",
-  "precache-manifest.7dfc4dd005bbfb926d5241c1b9a0dda5.js": "/test-case-tracker/precache-manifest.7dfc4dd005bbfb926d5241c1b9a0dda5.js",
+  "precache-manifest.09e49936feb547552e7f6f9f3602fa8b.js": "/test-case-tracker/precache-manifest.09e49936feb547552e7f6f9f3602fa8b.js",
   "service-worker.js": "/test-case-tracker/service-worker.js"
 }
