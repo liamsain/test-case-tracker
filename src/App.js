@@ -4,7 +4,6 @@ import Table from './Components/Table';
 import Controls from './Components/Controls';
 import { NotTested } from './Constants/status';
 import StatusDot from './Components/StatusDot';
-import { isValidJson } from './utils/isValidJson';
 import { csvFileHeader } from './Constants/csvFileHeader';
 
 class App extends Component {
@@ -85,13 +84,9 @@ class App extends Component {
     this.exportData("test-cases.csv", csvFileContent);
   }
 
-  importJson = content => {
-    if (!isValidJson(content)) {
-      alert('that\'s not valid json, is it mate');
-      return;
-    }
-    this.setState(JSON.parse(content));
-    window.localStorage['test-cases'] = JSON.stringify(JSON.parse(content));
+  importJson = json => {
+    this.setState(json);
+    window.localStorage['test-cases'] = JSON.stringify(json);
   }
 
   clearCache = () => {
@@ -131,9 +126,9 @@ class App extends Component {
           onAddNewRow={this.onAddNewRow}
           onExportJson={this.exportJson}
           onExportTxt={this.exportTxt}
-          onImportData={this.importJson}
           onResetData={this.clearCache}
           onExportCsv={this.exportCsv}
+          onImportJson={this.importJson}
         />
         <Table
           rows={this.state.rows}
