@@ -42,6 +42,7 @@ class Row extends Component {
               onChange={e => this.props.onChange(e, this.props.id)}
               value={this.props.actualResult}
               name="actualResult"
+              shouldFocusOnCreate
             />
           }
           {
