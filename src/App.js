@@ -158,6 +158,7 @@ class App extends Component {
         <div className="u-margin-top-massive">
           <h3>todo</h3>
           <ul>
+            <li>escape commas in csv export</li>
             <li>move status tool tips to bottom</li>
             <li>only focus test case text area if length === 0</li>
             <li>figure out way of support bug tracking for each test case and device</li>
