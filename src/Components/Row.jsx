@@ -4,9 +4,13 @@ import { NotTested, Passed, Failed } from "../Constants/status";
 import StatusDot from "./StatusDot";
 
 class Row extends Component {
+  state = {
+    bugFound: false
+  }
   render() {
+    const showActualResultTextArea = this.props.actualResult.length > 0 || this.state.bugFound;
     return (
-      <tr className="animated slideInDown faster">
+      <tr className={`${this.props.id !== 0 ? 'animated slideInDown faster' : ''}`}>
         <td className="table-id-column u-center">
           <strong>{this.props.id}</strong>
           <button
@@ -32,11 +36,22 @@ class Row extends Component {
           />
         </td>
         <td>
-          <TextArea
-            onChange={e => this.props.onChange(e, this.props.id)}
-            value={this.props.actualResult}
-            name="actualResult"
-          />
+          {
+            showActualResultTextArea &&
+            <TextArea
+              onChange={e => this.props.onChange(e, this.props.id)}
+              value={this.props.actualResult}
+              name="actualResult"
+            />
+          }
+          {
+            !showActualResultTextArea &&
+            <button
+            className="button-danger pure-button"
+            onClick={() => this.setState({bugFound: true})}>
+              Bug
+            </button>
+          }
         </td>
         <td>
           <input

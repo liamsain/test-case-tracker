@@ -147,11 +147,11 @@ class App extends Component {
         <div className="u-margin-top">
           <h3>todo</h3>
           <ul>
-            <li>import/ export excel files</li>
             <li>figure out way of support bug tracking for each test case and device</li>
             <li>support mobile device width</li>
             <li>write unit tests</li>
             <li>refactor components</li>
+            <li>import/ export excel files</li>
           </ul>
         </div>
       </div>

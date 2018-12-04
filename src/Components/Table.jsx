@@ -7,7 +7,7 @@ class Table extends Component {
     return (
       <div>
         {this.props.rows && this.props.rows.length > 0 &&
-          <table className="pure-table pure-table-horizontal">
+          <table className="pure-table pure-table-horizontal animated fadeIn">
             <thead>
               <tr>
                 <th>#</th>
