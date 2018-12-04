@@ -61,7 +61,7 @@ class Controls extends Component {
             className="pure-button"
             onClick={() => this.setState({ hideControls: !this.state.hideControls })}
           >
-            {this.state.hideControls ? 'Show data controls' : 'Hide data controls'}
+            Import / export controls
           </button>
           {
             !this.state.hideControls &&
