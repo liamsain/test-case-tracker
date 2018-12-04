@@ -29,21 +29,20 @@ class Controls extends Component {
       const newState = { rows: [] };
       const lines = content.split("\n");
       for (let i = 1; i < lines.length; i++) {
-        let cols = lines[i].split(",");
-        console.log(cols);
+        let cols = lines[i].split("\",");
         let obj = {};
         if(cols[0].length < 1 || cols[1].length < 1){
           break;
         }
-        obj.id = cols[0];
-        obj.case = cols[1];
-        obj.expectedResult = cols[2];
-        obj.actualResult = cols[3];
-        obj.iPhoneTested = cols[4].toLowerCase() === "true";
-        obj.zebraTested = cols[5].toLowerCase() === "true";
-        obj.iPadTested = cols[6].toLowerCase() === "true";
-        obj.desktopTested = cols[7].toLowerCase() === "true";
-        obj.status = cols[8].toLowerCase();
+        obj.id = cols[0].replace(/"/g, "");
+        obj.case = cols[1].replace(/"/g, "");
+        obj.expectedResult = cols[2].replace(/"/g, "");
+        obj.actualResult = cols[3].replace(/"/g, "");
+        obj.iPhoneTested = cols[4].replace(/"/g, "").toLowerCase() === "true";
+        obj.zebraTested = cols[5].replace(/"/g, "").toLowerCase() === "true";
+        obj.iPadTested = cols[6].replace(/"/g, "").toLowerCase() === "true";
+        obj.desktopTested = cols[7].replace(/"/g, "").toLowerCase() === "true";
+        obj.status = cols[8].replace(/"/g, "").toLowerCase();
         newState.rows.push(obj);
       }
       this.props.onImportJson(newState);

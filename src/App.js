@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import Table from "./Components/Table";
 import Controls from "./Components/Controls";
-import { NotTested } from "./Constants/status";
 import StatusDot from "./Components/StatusDot";
 import { csvFileHeader } from "./Constants/csvFileHeader";
+import { getNewCaseRow } from './Constants/newCaseRow';
 
 class App extends Component {
   constructor() {
@@ -45,17 +45,7 @@ class App extends Component {
   onAddNewRow = () => {
     const newState = this.state;
     const id = newState.rows.length + 1;
-    newState.rows.push({
-      id,
-      case: "",
-      expectedResult: "",
-      actualResult: "",
-      iPhoneTested: false,
-      zebraTested: false,
-      iPadTested: false,
-      desktopTested: false,
-      status: NotTested
-    });
+    newState.rows.push(getNewCaseRow(id));
     this.setState(newState);
   };
 
@@ -91,7 +81,7 @@ class App extends Component {
     this.state.rows.forEach(rowObj => {
       let str = "";
       for (var prop in rowObj) {
-        str += rowObj[prop] + ",";
+        str += "\"" + rowObj[prop] + "\",";
       }
       str += "\r\n";
       csvFileContent += str;
@@ -158,7 +148,6 @@ class App extends Component {
         <div className="u-margin-top-massive">
           <h3>todo</h3>
           <ul>
-            <li>escape commas in csv export</li>
             <li>move status tool tips to bottom</li>
             <li>only focus test case text area if length === 0</li>
             <li>figure out way of support bug tracking for each test case and device</li>
