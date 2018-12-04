@@ -148,10 +148,10 @@ class App extends Component {
         <div className="u-margin-top-massive">
           <h3>todo</h3>
           <ul>
-            <li>move status tool tips to bottom</li>
             <li>figure out way of support bug tracking for each test case and device</li>
             <li>import/ export excel files</li>
             <li>support mobile device width</li>
+            <li>write unit tests</li>
           </ul>
         </div>
       </div>

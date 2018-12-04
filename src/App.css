@@ -95,18 +95,20 @@ table {
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 100%;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
 }
 
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 10%;
+  bottom: 100%;
+  left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: transparent transparent black transparent;
 }
 
 .tooltip:hover .tooltiptext {
