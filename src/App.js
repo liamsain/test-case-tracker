@@ -149,7 +149,6 @@ class App extends Component {
           <h3>todo</h3>
           <ul>
             <li>move status tool tips to bottom</li>
-            <li>only focus test case text area if length === 0</li>
             <li>figure out way of support bug tracking for each test case and device</li>
             <li>import/ export excel files</li>
             <li>support mobile device width</li>

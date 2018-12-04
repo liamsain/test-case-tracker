@@ -21,7 +21,7 @@ class Row extends Component {
             onChange={e => this.props.onChange(e, this.props.id)}
             value={this.props.case}
             name="case"
-            shouldFocusOnCreate
+            shouldFocusOnCreate={this.props.case.length === 0}
           />
         </td>
         <td>
