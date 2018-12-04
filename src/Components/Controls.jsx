@@ -31,7 +31,7 @@ class Controls extends Component {
       for (let i = 1; i < lines.length; i++) {
         let cols = lines[i].split(",");
         let obj = {};
-        if(cols[0].length === 0){
+        if (cols[0].length === 0) {
           break;
         }
         obj.id = cols[0];
