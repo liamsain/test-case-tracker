@@ -119,7 +119,6 @@ class App extends Component {
               <StatusDot
                 key={x.id}
                 status={x.status}
-                toolTipText={x.case}
                 animatedClassName="fadeInLeft faster"
               />
             ))}
