@@ -4,7 +4,7 @@ import { csvContentHeaderIsCorrect } from '../Constants/csvFileHeader';
 
 class Controls extends Component {
   state = {
-    controlButtonsHidden: true
+    hideControls: true
   };
 
   onJsonFileImportChange = e => {
@@ -59,13 +59,13 @@ class Controls extends Component {
         <div className="u-margin-bottom">
           <button
             className="pure-button"
-            onClick={() => this.setState({ controlButtonsHidden: !this.state.controlButtonsHidden })}
+            onClick={() => this.setState({ hideControls: !this.state.hideControls })}
           >
-            {this.state.controlButtonsHidden ? 'Show data controls' : 'Hide data controls'}
+            {this.state.hideControls ? 'Show data controls' : 'Hide data controls'}
           </button>
           {
-            !this.state.controlButtonsHidden &&
-            <span className="animated fadeIn fast">
+            !this.state.hideControls &&
+            <div className="animated flipInX faster" style={{ "display": "inline-block" }}>
               <button
                 className="button-warning pure-button u-margin-left"
                 onClick={() => document.getElementById("jsonFileInput").click()}
@@ -108,15 +108,16 @@ class Controls extends Component {
                 className="u-display-none"
                 onChange={this.onCsvFileImportChange}
               />
-              <button
-                style={{ float: "right" }}
-                className="button-danger pure-button"
-                onClick={this.props.onResetData}
-              >
-                Reset data
-              </button>
-            </span>
+
+            </div>
           }
+          <button
+            style={{ float: "right" }}
+            className="button-danger pure-button"
+            onClick={this.props.onResetData}
+          >
+            Reset data
+          </button>
         </div>
       </div>);
   }
