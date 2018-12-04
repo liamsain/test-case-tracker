@@ -145,13 +145,14 @@ class App extends Component {
         >
           Add test case
         </button>
-        <div className="u-margin-top-massive">
+        <div className="u-margin-top">
           <h3>todo</h3>
           <ul>
-            <li>figure out way of support bug tracking for each test case and device</li>
             <li>import/ export excel files</li>
+            <li>figure out way of support bug tracking for each test case and device</li>
             <li>support mobile device width</li>
             <li>write unit tests</li>
+            <li>refactor components</li>
           </ul>
         </div>
       </div>

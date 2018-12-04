@@ -42,7 +42,8 @@ class Controls extends Component {
         obj.zebraTested = cols[5].replace(/"/g, "").toLowerCase() === "true";
         obj.iPadTested = cols[6].replace(/"/g, "").toLowerCase() === "true";
         obj.desktopTested = cols[7].replace(/"/g, "").toLowerCase() === "true";
-        obj.status = cols[8].replace(/"/g, "").toLowerCase();
+        obj.status = cols[8].replace(/"/g, "")
+        console.log(obj.status);
         newState.rows.push(obj);
       }
       this.props.onImportJson(newState);
