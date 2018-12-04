@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import Table from './Components/Table';
-import Controls from './Components/Controls';
-import { NotTested } from './Constants/status';
-import StatusDot from './Components/StatusDot';
-import { csvFileHeader } from './Constants/csvFileHeader';
+import React, { Component } from "react";
+import "./App.css";
+import Table from "./Components/Table";
+import Controls from "./Components/Controls";
+import { NotTested } from "./Constants/status";
+import StatusDot from "./Components/StatusDot";
+import { csvFileHeader } from "./Constants/csvFileHeader";
 
 class App extends Component {
   constructor() {
@@ -13,8 +13,11 @@ class App extends Component {
       rows: []
     };
     if (typeof window !== "undefined") {
-      if (window.localStorage['test-cases'] && window.localStorage['test-cases'].length > 0) {
-        this.state = JSON.parse(window.localStorage['test-cases'])
+      if (
+        window.localStorage["test-cases"] &&
+        window.localStorage["test-cases"].length > 0
+      ) {
+        this.state = JSON.parse(window.localStorage["test-cases"]);
       }
     }
   }
@@ -22,20 +25,22 @@ class App extends Component {
   onChange = (e, index) => {
     const newState = this.state;
     if (e.target.type === "checkbox") {
-      newState.rows[index][e.target.name] = !newState.rows[index][e.target.name];
+      newState.rows[index][e.target.name] = !newState.rows[index][
+        e.target.name
+      ];
     } else {
       newState.rows[index][e.target.name] = e.target.value;
     }
     this.setState(newState);
-    window.localStorage['test-cases'] = JSON.stringify(newState);
-  }
+    window.localStorage["test-cases"] = JSON.stringify(newState);
+  };
 
   onDelete = id => {
     const newState = this.state;
     newState.rows = this.state.rows.filter((x, i) => i !== id);
     this.setState(newState);
-    window.localStorage['test-cases'] = JSON.stringify(newState);
-  }
+    window.localStorage["test-cases"] = JSON.stringify(newState);
+  };
 
   onAddNewRow = () => {
     const newState = this.state;
@@ -52,47 +57,57 @@ class App extends Component {
       status: NotTested
     });
     this.setState(newState);
-  }
+  };
 
   exportData = (filename, content) => {
-    var el = document.createElement('a');
-    el.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-    el.setAttribute('download', filename);
-    el.style.display = 'none';
+    var el = document.createElement("a");
+    el.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(content)
+    );
+    el.setAttribute("download", filename);
+    el.style.display = "none";
     document.body.appendChild(el);
     el.click();
     document.body.removeChild(el);
-  }
+  };
   exportJson = () => {
-    this.exportData("test-cases.json", JSON.stringify(this.state, null, '\t'));
-  }
+    this.exportData("test-cases.json", JSON.stringify(this.state, null, "\t"));
+  };
   exportTxt = () => {
-    var txtFileContent = this.state.rows.map(x => `${x.case}\r\nExpected result: ${x.expectedResult}\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`).join("\r\n");
+    var txtFileContent = this.state.rows
+      .map(
+        x =>
+          `${x.case}\r\nExpected result: ${
+            x.expectedResult
+          }\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`
+      )
+      .join("\r\n");
     this.exportData("test-cases.txt", txtFileContent);
-  }
+  };
   exportCsv = () => {
     let csvFileContent = csvFileHeader;
-    
+
     this.state.rows.forEach(rowObj => {
-      let str = '';
-      for(var prop in rowObj){
-        str += rowObj[prop] + ',';
+      let str = "";
+      for (var prop in rowObj) {
+        str += rowObj[prop] + ",";
       }
-      str += '\r\n';
+      str += "\r\n";
       csvFileContent += str;
-    })
+    });
     this.exportData("test-cases.csv", csvFileContent);
-  }
+  };
 
   importJson = json => {
     this.setState(json);
-    window.localStorage['test-cases'] = JSON.stringify(json);
-  }
+    window.localStorage["test-cases"] = JSON.stringify(json);
+  };
 
   clearCache = () => {
-    window.localStorage['test-cases'] = "";
+    window.localStorage["test-cases"] = "";
     this.setState({ rows: [] });
-  }
+  };
 
   addButtonIsDisabled = () => {
     const rows = this.state.rows;
@@ -102,8 +117,7 @@ class App extends Component {
       }
     }
     return false;
-  }
-
+  };
 
   render() {
     return (
@@ -111,15 +125,14 @@ class App extends Component {
         <div className="headline u-margin-bottom">
           <h1>Test cases</h1>
           <span className="u-margin-left-xl">
-            {
-              this.state.rows.map(x =>
-                <StatusDot
-                  key={x.id}
-                  status={x.status}
-                  toolTipText={x.case}
-                  animatedClassName="fadeInLeft faster"
-                />)
-            }
+            {this.state.rows.map(x => (
+              <StatusDot
+                key={x.id}
+                status={x.status}
+                toolTipText={x.case}
+                animatedClassName="fadeInLeft faster"
+              />
+            ))}
           </span>
         </div>
         <Controls
@@ -135,9 +148,23 @@ class App extends Component {
           onChange={this.onChange}
           onDelete={this.onDelete}
         />
-        <button className="button-success pure-button important-active-green" disabled={this.addButtonIsDisabled()} onClick={this.onAddNewRow}>
+        <button
+          className="button-success pure-button important-active-green"
+          disabled={this.addButtonIsDisabled()}
+          onClick={this.onAddNewRow}
+        >
           Add test case
         </button>
+        <div>
+          <h3>todo</h3>
+          <ul>
+            <li>move status tool tips to bottom</li>
+            <li>only focus test case text area if length === 0</li>
+            <li>figure out way of support bug tracking for each test case and device</li>
+            <li>import/ export excel files</li>
+            <li>support mobile device width</li>
+          </ul>
+        </div>
       </div>
     );
   }
