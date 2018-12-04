@@ -3,7 +3,7 @@ import TextArea from "./TextArea";
 import { NotTested, Passed, Failed } from "../Constants/status";
 import StatusDot from "./StatusDot";
 
-class Row extends Component {
+class CaseRow extends Component {
   state = {
     bugFound: false
   }
@@ -102,4 +102,4 @@ class Row extends Component {
   }
 }
 
-export default Row;
+export default CaseRow;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Row from './Row';
+import Row from './CaseRow';
 
 class Table extends Component {
   render() {
@@ -20,8 +20,8 @@ class Table extends Component {
             </thead>
             <tbody id="test-case-table-body">
               {
-                this.props.rows.map((x, i) =>
-                  <Row
+                this.props.rows.map((x, i) => 
+                  i % 2 == 0 ? <Row
                     key={x.id}
                     id={i}
                     case={x.case}
@@ -34,7 +34,7 @@ class Table extends Component {
                     status={x.status}
                     onChange={this.props.onChange}
                     onDelete={this.props.onDelete}
-                  />)
+                  /> : <tr><td>what</td></tr>)
               }
             </tbody>
           </table>
