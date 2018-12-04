@@ -3,6 +3,9 @@ import { isValidJson } from '../utils/isValidJson';
 import { csvContentHeaderIsCorrect } from '../Constants/csvFileHeader';
 
 class Controls extends Component {
+  state = {
+    controlButtonsHidden: true
+  };
 
   onJsonFileImportChange = e => {
     const reader = new FileReader();
@@ -31,7 +34,7 @@ class Controls extends Component {
       for (let i = 1; i < lines.length; i++) {
         let cols = lines[i].split("\",");
         let obj = {};
-        if(cols[0].length < 1 || cols[1].length < 1){
+        if (cols[0].length < 1 || cols[1].length < 1) {
           break;
         }
         obj.id = cols[0].replace(/"/g, "");
@@ -43,7 +46,6 @@ class Controls extends Component {
         obj.iPadTested = cols[6].replace(/"/g, "").toLowerCase() === "true";
         obj.desktopTested = cols[7].replace(/"/g, "").toLowerCase() === "true";
         obj.status = cols[8].replace(/"/g, "")
-        console.log(obj.status);
         newState.rows.push(obj);
       }
       this.props.onImportJson(newState);
@@ -53,56 +55,68 @@ class Controls extends Component {
   render() {
     return (
       <div>
-        <button
-          style={{ float: "right" }}
-          className="button-danger pure-button"
-          onClick={this.props.onResetData}
-        >
-          Reset data
-        </button>
+
         <div className="u-margin-bottom">
           <button
-            className="button-warning pure-button"
-            onClick={() => document.getElementById("jsonFileInput").click()}
+            className="pure-button"
+            onClick={() => this.setState({ controlButtonsHidden: !this.state.controlButtonsHidden })}
           >
-            Import json
+            {this.state.controlButtonsHidden ? 'Show data controls' : 'Hide data controls'}
           </button>
-          <button
-            className="button-warning pure-button u-margin-left"
-            onClick={() => document.getElementById("csvFileInput").click()}
-          >
-            Import CSV
-          </button>
-          <button
-            className="button-secondary pure-button u-margin-left"
-            onClick={this.props.onExportJson}
-          >
-            Export json
-          </button>
-          <button
-            className="button-secondary pure-button u-margin-left"
-            onClick={this.props.onExportTxt}
-          >
-            Export txt
-          </button>
-          <button
-            className="button-secondary pure-button u-margin-left"
-            onClick={this.props.onExportCsv}
-          >
-            Export CSV
-          </button>
-          <input
-            type="file"
-            id="jsonFileInput"
-            className="u-display-none"
-            onChange={this.onJsonFileImportChange}
-          />
-          <input
-            type="file"
-            id="csvFileInput"
-            className="u-display-none"
-            onChange={this.onCsvFileImportChange}
-          />
+          {
+            !this.state.controlButtonsHidden &&
+            <span className="animated fadeIn fast">
+              <button
+                className="button-warning pure-button u-margin-left"
+                onClick={() => document.getElementById("jsonFileInput").click()}
+              >
+                Import json
+              </button>
+              <button
+                className="button-warning pure-button u-margin-left"
+                onClick={() => document.getElementById("csvFileInput").click()}
+              >
+                Import CSV
+              </button>
+              <button
+                className="button-secondary pure-button u-margin-left"
+                onClick={this.props.onExportJson}
+              >
+                Export json
+              </button>
+              <button
+                className="button-secondary pure-button u-margin-left"
+                onClick={this.props.onExportTxt}
+              >
+                Export txt
+              </button>
+              <button
+                className="button-secondary pure-button u-margin-left"
+                onClick={this.props.onExportCsv}
+              >
+                Export CSV
+              </button>
+              <input
+                type="file"
+                id="jsonFileInput"
+                className="u-display-none"
+                onChange={this.onJsonFileImportChange}
+              />
+              <input
+                type="file"
+                id="csvFileInput"
+                className="u-display-none"
+                onChange={this.onCsvFileImportChange}
+              />
+              <button
+                style={{ float: "right" }}
+                className="button-danger pure-button"
+                onClick={this.props.onResetData}
+              >
+                Reset data
+              </button>
+            </span>
+          }
         </div>
       </div>);
   }
