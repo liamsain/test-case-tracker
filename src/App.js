@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
+import EditableTitle from './Components/EditableTitle';
 import Table from "./Components/Table";
 import Controls from "./Components/Controls";
-import StatusDot from "./Components/StatusDot";
+import Todos from './Components/Todos';
 import { csvFileHeader } from "./Constants/csvFileHeader";
 import { getNewCaseRow } from './Constants/newCaseRow';
 import { getNewBugRow } from './Constants/newBugRow';
-import Todos from './Components/Todos';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      rows: []
+      rows: [],
+      title: "Test cases"
     };
     if (typeof window !== "undefined") {
       if (
@@ -120,7 +121,7 @@ class App extends Component {
 
   clearCache = () => {
     window.localStorage["test-cases"] = "";
-    this.setState({ rows: [] });
+    this.setState({ rows: [], title: "test cases" });
   };
 
   addButtonIsDisabled = () => {
@@ -133,20 +134,18 @@ class App extends Component {
     return false;
   };
 
+  onTitleChange = e => {
+    this.setState({ title: e.target.value });
+    window.localStorage["test-cases"] = JSON.stringify(this.state);
+  }
   render() {
     return (
       <div className="animated fadeIn">
         <div className="headline u-margin-bottom">
-          <h1>Test cases</h1>
-          <span className="u-margin-left-xl">
-            {this.state.rows.map(x => (
-              <StatusDot
-                key={x.id}
-                status={x.status}
-                animatedClassName="u-margin-left fadeInLeft faster"
-              />
-            ))}
-          </span>
+          <EditableTitle
+            value={this.state.title}
+            onChange={e => this.setState({ title: e.target.value })}
+          />
         </div>
         <Controls
           onAddNewRow={this.onAddNewRow}
