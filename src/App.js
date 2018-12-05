@@ -143,7 +143,7 @@ class App extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <div className="headline u-margin-bottom">
+        <div className="u-margin-bottom">
           <EditableTitle
             value={this.state.title}
             onChange={e => this.onTitleChange(e)}
