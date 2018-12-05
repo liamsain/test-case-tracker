@@ -43,6 +43,10 @@ class App extends Component {
     window.localStorage["test-cases"] = JSON.stringify(newState);
   };
 
+  onBugChange = (e, caseId, bugId) => {
+    
+  }
+
   onDelete = id => {
     const newState = this.state;
     newState.rows = this.state.rows.filter(x => x.id !== id);
@@ -77,7 +81,7 @@ class App extends Component {
       .map(
         x =>
           `${x.case}\r\nExpected result: ${
-            x.expectedResult
+          x.expectedResult
           }\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`
       )
       .join("\r\n");

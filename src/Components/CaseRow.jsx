@@ -7,7 +7,7 @@ class CaseRow extends Component {
 
   render() {
     return (
-      <tr className={`${this.props.id !== 0 ? 'animated slideInDown faster' : ''}`}>
+      <tr className="animated fadeIn faster">
         <td className="table-id-column u-center">
           <strong>{this.props.id}</strong>
           <button
@@ -22,6 +22,7 @@ class CaseRow extends Component {
             onChange={e => this.props.onChange(e, this.props.id)}
             value={this.props.case}
             name="case"
+            label="Test case"
             shouldFocusOnCreate={this.props.case.length === 0}
           />
         </td>
@@ -29,6 +30,7 @@ class CaseRow extends Component {
           <TextArea
             onChange={e => this.props.onChange(e, this.props.id)}
             value={this.props.expectedResult}
+            label="Expected result"
             name="expectedResult"
           />
         </td>

@@ -19,8 +19,8 @@ class Table extends Component {
             <thead>
               <tr>
                 <th></th>
-                <th>Test case</th>
-                <th>Expected result</th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th>Devices</th>
                 <th>Status</th>

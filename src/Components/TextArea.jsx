@@ -9,13 +9,14 @@ class TextArea extends Component {
   }
   render() {
     return (
-      <div>
+      <form class="pure-form">
         <label htmlFor={this.props.name}>
           <small>
             {this.props.label}
           </small>
         </label>
         <textarea
+          style={{"resize": "none"}}
           ref={input => { this.textArea = input; }}
           className="row-text-area"
           onChange={this.props.onChange}
@@ -23,7 +24,7 @@ class TextArea extends Component {
           id={this.props.id}
           value={this.props.value}
         />
-      </div>
+      </form>
     );
   }
 }
