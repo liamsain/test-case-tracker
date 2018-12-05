@@ -10,8 +10,8 @@ class EditableTitle extends React.Component {
       <div>
         {
           this.state.editMode &&
-          <form className="pure-form animated fadeIn" onSubmit={e => { e.preventDefault(); this.setState({ editMode: false }) }} >
-            <input type="text" value={this.props.value} onChange={this.props.onChange} />
+          <form className="pure-form animated fadeIn" onSubmit={e => { e.preventDefault();this.setState({ editMode: false }) }} >
+            <input autoFocus type="text" value={this.props.value} onChange={this.props.onChange} />
             <button type="submit" className="pure-button u-margin-left">Save</button>
           </form>
         }

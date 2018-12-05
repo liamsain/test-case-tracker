@@ -74,20 +74,20 @@ class App extends Component {
     this.setState(newState);
   };
 
-  exportData = (filename, content) => {
+  exportData = (filenameExt, content) => {
     var el = document.createElement("a");
     el.setAttribute(
       "href",
       "data:text/plain;charset=utf-8," + encodeURIComponent(content)
     );
-    el.setAttribute("download", filename);
+    el.setAttribute("download", `${this.state.title}.${filenameExt}`);
     el.style.display = "none";
     document.body.appendChild(el);
     el.click();
     document.body.removeChild(el);
   };
   exportJson = () => {
-    this.exportData("test-cases.json", JSON.stringify(this.state, null, "\t"));
+    this.exportData(".json", JSON.stringify(this.state, null, "\t"));
   };
   exportTxt = () => {
     var txtFileContent = this.state.rows
@@ -98,7 +98,7 @@ class App extends Component {
           }\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`
       )
       .join("\r\n");
-    this.exportData("test-cases.txt", txtFileContent);
+    this.exportData(".txt", txtFileContent);
   };
   exportCsv = () => {
     let csvFileContent = csvFileHeader;
@@ -111,7 +111,7 @@ class App extends Component {
       str += "\r\n";
       csvFileContent += str;
     });
-    this.exportData("test-cases.csv", csvFileContent);
+    this.exportData(".csv", csvFileContent);
   };
 
   importJson = json => {
@@ -121,7 +121,7 @@ class App extends Component {
 
   clearCache = () => {
     window.localStorage["test-cases"] = "";
-    this.setState({ rows: [], title: "test cases" });
+    this.setState({ rows: [], title: "Test cases" });
   };
 
   addButtonIsDisabled = () => {
@@ -135,8 +135,11 @@ class App extends Component {
   };
 
   onTitleChange = e => {
-    this.setState({ title: e.target.value });
-    window.localStorage["test-cases"] = JSON.stringify(this.state);
+    const newState = this.state;
+    newState.title = e.target.value;
+    window.localStorage["test-cases"] = JSON.stringify(this.state)
+    this.setState(newState);
+    console.log(window.localStorage["test-cases"]);
   }
   render() {
     return (
@@ -144,7 +147,7 @@ class App extends Component {
         <div className="headline u-margin-bottom">
           <EditableTitle
             value={this.state.title}
-            onChange={e => this.setState({ title: e.target.value })}
+            onChange={e => this.onTitleChange(e)}
           />
         </div>
         <Controls
