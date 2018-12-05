@@ -1,6 +1,8 @@
-import {NotTested} from './status';
+import { NotTested } from './status';
+import { CASE_ROW } from './rowTypes';
 
 export const getNewCaseRow = id => ({
+  type: CASE_ROW,
   id,
   case: "",
   expectedResult: "",
@@ -9,5 +11,6 @@ export const getNewCaseRow = id => ({
   zebraTested: false,
   iPadTested: false,
   desktopTested: false,
-  status: NotTested
+  status: NotTested,
+  bugs: []
 });

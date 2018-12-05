@@ -5,6 +5,7 @@ import Controls from "./Components/Controls";
 import StatusDot from "./Components/StatusDot";
 import { csvFileHeader } from "./Constants/csvFileHeader";
 import { getNewCaseRow } from './Constants/newCaseRow';
+import { getNewBugRow } from './Constants/newBugRow';
 
 class App extends Component {
   constructor() {
@@ -22,14 +23,21 @@ class App extends Component {
     }
   }
 
-  onChange = (e, index) => {
+  onAddBug = caseId => {
     const newState = this.state;
+    const row = newState.rows.find(x => x.id === caseId);
+    let newBugId = row.bugs.length + 1;
+    row.bugs.push(getNewBugRow(newBugId, caseId));
+    this.setState(newState);
+  };
+
+  onCaseChange = (e, id) => {
+    const newState = this.state;
+    const row = newState.rows.find(x => x.id === id);
     if (e.target.type === "checkbox") {
-      newState.rows[index][e.target.name] = !newState.rows[index][
-        e.target.name
-      ];
+      row[e.target.name] = !row[e.target.name];
     } else {
-      newState.rows[index][e.target.name] = e.target.value;
+      row[e.target.name] = e.target.value;
     }
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
@@ -37,7 +45,7 @@ class App extends Component {
 
   onDelete = id => {
     const newState = this.state;
-    newState.rows = this.state.rows.filter((x, i) => i !== id);
+    newState.rows = this.state.rows.filter(x => x.id !== id);
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
   };
@@ -134,8 +142,9 @@ class App extends Component {
         />
         <Table
           rows={this.state.rows}
-          onChange={this.onChange}
+          onCaseChange={this.onCaseChange}
           onDelete={this.onDelete}
+          onAddBug={this.onAddBug}
         />
         <button
           className="button-success pure-button important-active-green"
