@@ -7,7 +7,7 @@ const BugRow = ({ caseId, id, description, onChange, onDelete }) => (
     <td>
       <TextArea
         value={description}
-        shouldFocusOnCreate
+        shouldFocusOnCreate={description.length === 0}
         name="description"
         onChange={e => onChange(e, caseId, id)}
         label={`Bug ${id}`}

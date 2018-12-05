@@ -72,12 +72,12 @@ class Controls extends Component {
               >
                 Import json
               </button>
-              <button
+              {/* <button
                 className="button-warning pure-button u-margin-left"
                 onClick={() => document.getElementById("csvFileInput").click()}
               >
                 Import CSV
-              </button>
+              </button> */}
               <button
                 className="button-secondary pure-button u-margin-left"
                 onClick={this.props.onExportJson}
@@ -90,12 +90,12 @@ class Controls extends Component {
               >
                 Export txt
               </button>
-              <button
+              {/* <button
                 className="button-secondary pure-button u-margin-left"
                 onClick={this.props.onExportCsv}
               >
                 Export CSV
-              </button>
+              </button> */}
               <input
                 type="file"
                 id="jsonFileInput"
