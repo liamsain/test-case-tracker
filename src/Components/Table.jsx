@@ -11,7 +11,6 @@ class Table extends Component {
       casesAndBugsArray.push(row);
       row.bugs.forEach(x => casesAndBugsArray.push(x));
     }
-    console.log(casesAndBugsArray);
     return (
       <div>
         {this.props.rows && this.props.rows.length > 0 &&
@@ -21,9 +20,9 @@ class Table extends Component {
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
                 <th>Devices</th>
                 <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="test-case-table-body">
@@ -41,7 +40,7 @@ class Table extends Component {
                     desktopTested={x.desktopTested}
                     status={x.status}
                     onChange={this.props.onCaseChange}
-                    onDelete={this.props.onDelete}
+                    onDelete={this.props.onDeleteCase}
                     onAddBug={this.props.onAddBug}
                   /> :
                   <BugRow
@@ -49,6 +48,8 @@ class Table extends Component {
                     caseId={x.caseId}
                     key={`${x.caseId} - ${x.id}`}
                     description={x.description}
+                    onChange={this.props.onBugChange}
+                    onDelete={this.props.onDeleteBug}
                   />)
               }
             </tbody>

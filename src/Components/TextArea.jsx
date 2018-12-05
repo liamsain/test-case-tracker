@@ -9,11 +9,9 @@ class TextArea extends Component {
   }
   render() {
     return (
-      <form class="pure-form">
+      <form className="pure-form">
         <label htmlFor={this.props.name}>
-          <small>
-            {this.props.label}
-          </small>
+            <strong>{this.props.label}</strong>
         </label>
         <textarea
           style={{"resize": "none"}}

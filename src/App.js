@@ -6,6 +6,7 @@ import StatusDot from "./Components/StatusDot";
 import { csvFileHeader } from "./Constants/csvFileHeader";
 import { getNewCaseRow } from './Constants/newCaseRow';
 import { getNewBugRow } from './Constants/newBugRow';
+import Todos from './Components/Todos';
 
 class App extends Component {
   constructor() {
@@ -44,15 +45,26 @@ class App extends Component {
   };
 
   onBugChange = (e, caseId, bugId) => {
-    
+    const newState = this.state;
+    const bug = newState.rows.find(testCase => testCase.id === caseId).bugs.find(bug => bug.id === bugId);
+    bug[e.target.name] = e.target.value;
+    this.setState(newState);
+    window.localStorage["test-cases"] = JSON.stringify(newState);
   }
 
-  onDelete = id => {
+  onDeleteCase = id => {
     const newState = this.state;
     newState.rows = this.state.rows.filter(x => x.id !== id);
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
   };
+
+  onDeleteBug = (caseId, bugId) => {
+    const newState = this.state;
+    const testCase = newState.rows.find(testCase => testCase.id === caseId);
+    testCase.bugs = testCase.bugs.filter(bug => bug.id !== bugId);
+    this.setState(newState);
+  }
 
   onAddNewRow = () => {
     const newState = this.state;
@@ -131,7 +143,7 @@ class App extends Component {
               <StatusDot
                 key={x.id}
                 status={x.status}
-                animatedClassName="fadeInLeft faster"
+                animatedClassName="u-margin-left fadeInLeft faster"
               />
             ))}
           </span>
@@ -147,8 +159,10 @@ class App extends Component {
         <Table
           rows={this.state.rows}
           onCaseChange={this.onCaseChange}
-          onDelete={this.onDelete}
+          onBugChange={this.onBugChange}
+          onDeleteCase={this.onDeleteCase}
           onAddBug={this.onAddBug}
+          onDeleteBug={this.onDeleteBug}
         />
         <button
           className="button-success pure-button important-active-green"
@@ -158,14 +172,7 @@ class App extends Component {
           Add test case
         </button>
         <div className="u-margin-top">
-          <h3>todo</h3>
-          <ul>
-            <li>figure out way of support bug tracking for each test case and device</li>
-            <li>support mobile device width</li>
-            <li>write unit tests</li>
-            <li>refactor components</li>
-            <li>import/ export excel files</li>
-          </ul>
+          <Todos />
         </div>
       </div>
     );

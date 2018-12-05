@@ -60,9 +60,15 @@ table {
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  display: inline;
-  margin-right:0.5rem;
-  margin-bottom: 0.2rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.table-status-column:before{
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
 }
 
 .failed{
@@ -77,49 +83,8 @@ table {
   background-color: #bbb;
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
 .table-id-column{
   width: 1rem;
-}
-
-.table-status-column{
-  width:3rem;
 }
 
 .table-actions-column{
@@ -136,6 +101,6 @@ table {
   display: inline;
 }
 
-.u-margin-top-massive{
-  margin-top: 15rem;
+.u-margin-top{
+  margin-top: 2rem;
 }

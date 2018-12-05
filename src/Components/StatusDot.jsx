@@ -14,15 +14,10 @@ class StatusDot extends Component {
 
   }
   render() {
-    return (<span className={`${this.getClass(this.props.status)} tooltip animated ${this.props.animatedClassName}`}>
-    {
-      this.props.toolTipText &&
-      <span className="tooltiptext">
-        {this.props.toolTipText}
-      </span>
-    }
-      
-    </span>)
+    return (
+    <span
+      className={`${this.getClass(this.props.status)} animated ${this.props.animatedClassName}`}
+    ></span>)
   }
 }
 
