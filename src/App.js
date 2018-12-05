@@ -87,7 +87,7 @@ class App extends Component {
     document.body.removeChild(el);
   };
   exportJson = () => {
-    this.exportData(".json", JSON.stringify(this.state, null, "\t"));
+    this.exportData("json", JSON.stringify(this.state, null, "\t"));
   };
   exportTxt = () => {
     var txtFileContent = this.state.rows
@@ -98,7 +98,7 @@ class App extends Component {
           }\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`
       )
       .join("\r\n");
-    this.exportData(".txt", txtFileContent);
+    this.exportData("txt", txtFileContent);
   };
   exportCsv = () => {
     let csvFileContent = csvFileHeader;
@@ -111,7 +111,7 @@ class App extends Component {
       str += "\r\n";
       csvFileContent += str;
     });
-    this.exportData(".csv", csvFileContent);
+    this.exportData("csv", csvFileContent);
   };
 
   importJson = json => {
@@ -139,7 +139,6 @@ class App extends Component {
     newState.title = e.target.value;
     window.localStorage["test-cases"] = JSON.stringify(this.state)
     this.setState(newState);
-    console.log(window.localStorage["test-cases"]);
   }
   render() {
     return (
