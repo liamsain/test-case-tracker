@@ -165,7 +165,7 @@ class App extends Component {
           onDeleteBug={this.onDeleteBug}
         />
         <button
-          className="button-success pure-button important-active-green"
+          className="button-secondary pure-button important-active-green"
           disabled={this.addButtonIsDisabled()}
           onClick={this.onAddNewRow}
         >
