@@ -16,13 +16,15 @@ class Todos extends React.Component {
         </button>
         {
           this.state.showTodos &&
-          <ul>
-            <li>enhance bug tracking feature</li>
-            <li>support mobile device width</li>
-            <li>write unit tests</li>
-            <li>refactor components</li>
-            <li>import/ export excel files</li>
-          </ul>
+          <div className="animated fadeInUp faster">
+            <ul>
+              <li>enhance bug tracking feature</li>
+              <li>support mobile device width</li>
+              <li>write unit tests</li>
+              <li>refactor components</li>
+              <li>import/ export excel files</li>
+            </ul>
+          </div>
         }
       </div>
     );
