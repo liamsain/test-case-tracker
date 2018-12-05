@@ -17,6 +17,7 @@ class Todos extends React.Component {
         {
           this.state.showTodos &&
           <ul>
+            <li>make title editable and base exported file names off it</li>
             <li>enhance bug tracking feature</li>
             <li>support mobile device width</li>
             <li>write unit tests</li>

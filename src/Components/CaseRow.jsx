@@ -6,9 +6,11 @@ import StatusDot from "./StatusDot";
 class CaseRow extends Component {
 
   render() {
+    const bugs = this.props.bugs;
+    const lastBug = bugs[bugs.length - 1];
+    const addBugButtonDisabled =  lastBug !== undefined && lastBug.description.length < 1;
     return (
       <tr className="animated fadeIn faster">
-
         <td>
           <TextArea
             onChange={e => this.props.onChange(e, this.props.id)}
@@ -30,6 +32,7 @@ class CaseRow extends Component {
           <button
             className="button-danger pure-button"
             onClick={() => this.props.onAddBug(this.props.id)}
+            disabled={addBugButtonDisabled}
           >
             + Bug
             </button>

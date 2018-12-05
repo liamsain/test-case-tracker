@@ -32,6 +32,7 @@ class Table extends Component {
                     key={x.id}
                     id={x.id}
                     case={x.case}
+                    bugs={x.bugs}
                     expectedResult={x.expectedResult}
                     actualResult={x.actualResult}
                     iPhoneTested={x.iPhoneTested}
