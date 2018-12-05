@@ -17,7 +17,7 @@ class Todos extends React.Component {
         {
           this.state.showTodos &&
           <ul>
-            <li>figure out way of support bug tracking for each test case and device</li>
+            <li>enhance bug tracking feature</li>
             <li>support mobile device width</li>
             <li>write unit tests</li>
             <li>refactor components</li>
