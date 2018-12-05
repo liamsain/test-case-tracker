@@ -35,7 +35,8 @@ class CaseRow extends Component {
         <td>
           <button
             className="button-danger pure-button"
-            onClick={() => this.props.onAddBug(this.props.id)}>
+            onClick={() => this.props.onAddBug(this.props.id)}
+            >
             + Bug
             </button>
         </td>

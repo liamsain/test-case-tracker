@@ -3,13 +3,15 @@ import TextArea from './TextArea';
 
 const BugRow = ({ caseId, id, description }) => (
   <tr className="animated fadeIn faster">
+    <td></td>
     <td>Bug {id}</td>
     <td>
       <TextArea
         value={description}
         shouldFocusOnCreate
-      /></td>
-    <td></td>
+        label="Bug description"
+      />
+    </td>
     <td></td>
     <td></td>
     <td></td>
