@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
-import EditableTitle from './Components/EditableTitle';
+import EditableTitle from "./Components/EditableTitle";
 import Table from "./Components/Table";
 import Controls from "./Components/Controls";
-import Todos from './Components/Todos';
+import Todos from "./Components/Todos";
 import { csvFileHeader } from "./Constants/csvFileHeader";
-import { getNewCaseRow } from './Constants/newCaseRow';
-import { getNewBugRow } from './Constants/newBugRow';
-import { v1 } from 'uuid';
+import { getNewCaseRow } from "./Constants/newCaseRow";
+import { getNewBugRow } from "./Constants/newBugRow";
+import { v1 } from "uuid";
+import XLSX from "xlsx";
+// import TestCaseAndBugContainer from './Components/TestCaseAndBugContainer';
+import moment from 'moment';
 
 class App extends Component {
   constructor() {
@@ -24,6 +27,7 @@ class App extends Component {
         this.state = JSON.parse(window.localStorage["test-cases"]);
       }
     }
+    
   }
 
   addBug = caseId => {
@@ -41,17 +45,27 @@ class App extends Component {
     } else {
       row[e.target.name] = e.target.value;
     }
+
+    if(e.target.name === "status"){
+      row.statusLastUpdatedOn = moment().format('llll');
+    }
+
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
   };
 
   onBugChange = (e, caseId, bugId) => {
     const newState = this.state;
-    const bug = newState.rows.find(testCase => testCase.id === caseId).bugs.find(bug => bug.id === bugId);
+    const bug = newState.rows
+      .find(testCase => testCase.id === caseId)
+      .bugs.find(bug => bug.id === bugId);
     bug[e.target.name] = e.target.value;
+    if(e.target.name === "status"){
+      bug.lastTested = moment().format('llll');
+    }
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
-  }
+  };
 
   deleteCase = id => {
     const newState = this.state;
@@ -65,7 +79,7 @@ class App extends Component {
     const testCase = newState.rows.find(testCase => testCase.id === caseId);
     testCase.bugs = testCase.bugs.filter(bug => bug.id !== bugId);
     this.setState(newState);
-  }
+  };
 
   addNewRow = () => {
     const newState = this.state;
@@ -95,7 +109,7 @@ class App extends Component {
       .map(
         x =>
           `${x.case}\r\nExpected result: ${
-          x.expectedResult
+            x.expectedResult
           }\r\nActual result: ${x.actualResult}\r\nStatus: ${x.status}\r\n-----`
       )
       .join("\r\n");
@@ -108,12 +122,74 @@ class App extends Component {
     this.state.rows.forEach(rowObj => {
       let str = "";
       for (var prop in rowObj) {
-        str += "\"" + rowObj[prop] + "\",";
+        str += '"' + rowObj[prop] + '",';
       }
       str += "\r\n";
       csvFileContent += str;
     });
     this.exportData("csv", csvFileContent);
+  };
+
+  exportXlsx = () => {
+    var testCaseData = [
+      [
+        "NO",
+        "USER STORE CONDITIONS",
+        "EXPECTED RESULTS",
+        "DATE LAST TESTED",
+        "PASS / FAIL",
+        "CHROME V46/ V64",
+        "IPHONE X V 11",
+        "ZEBRA V52 / V56",
+        "IPAD V11"
+      ]
+    ];
+
+    var bugData = [
+      [
+        "Feature / Bug Description",
+        "Test case",
+        "VSTS/ Sprint ID",
+        "Blocker?",
+        "Status",
+        "Last tested date"
+      ]
+    ];
+    let bugs = [];
+    this.state.rows.forEach(x => x.bugs.forEach(y => bugs.push(y)));
+    bugs.forEach(bug =>
+      bugData.push([
+        bug.description,
+        this.state.rows.findIndex(x => x.id === bug.caseId) + 1,
+        bug.vstsId,
+        bug.isBlocker ? "Yes" : "No",
+        bug.status,
+        bug.lastTested
+      ])
+    );
+
+    this.state.rows.forEach((x, i) =>
+      testCaseData.push([
+        i + 1,
+        x.case,
+        x.expectedResult,
+        x.statusLastUpdatedOn,
+        x.status,
+        x.desktopTested ? "Passed" : "Failed",
+        x.iPhoneTested ? "Passed" : "Failed",
+        x.zebraTested ? "Passed" : "Failed",
+        x.iPadTested ? "Passed" : "Failed"
+      ])
+    );
+
+    const wb = XLSX.utils.book_new();
+    const testCaseWs = XLSX.utils.aoa_to_sheet(testCaseData);
+    const bugsWs = XLSX.utils.aoa_to_sheet(bugData);
+    XLSX.utils.book_append_sheet(wb, testCaseWs, "Test Cases");
+    XLSX.utils.book_append_sheet(wb, bugsWs, "Bugs");
+
+    var sheetName = `${this.state.title}.xlsx`;
+    XLSX.writeFile(wb, sheetName);
   };
 
   importJson = json => {
@@ -139,10 +215,10 @@ class App extends Component {
   onTitleChange = e => {
     const newState = this.state;
     newState.title = e.target.value;
-    window.localStorage["test-cases"] = JSON.stringify(this.state)
+    window.localStorage["test-cases"] = JSON.stringify(this.state);
     this.setState(newState);
-  }
-  
+  };
+
   render() {
     return (
       <div className="animated fadeIn">
@@ -159,6 +235,7 @@ class App extends Component {
           onResetData={this.clearCache}
           onExportCsv={this.exportCsv}
           onImportJson={this.importJson}
+          onExportXlsx={this.exportXlsx}
         />
         <Table
           rows={this.state.rows}

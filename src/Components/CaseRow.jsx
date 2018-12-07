@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TextArea from "./TextArea";
-import { NotTested, Passed, Failed } from "../Constants/status";
-import StatusDot from "./StatusDot";
+import Status from './Status';
 
 class CaseRow extends Component {
 
@@ -64,20 +63,10 @@ class CaseRow extends Component {
           /> Desktop
         </td>
         <td className="table-status-column">
-          <StatusDot
+          <Status
+            onChange={e => this.props.onChange(e, this.props.id)}
             status={this.props.status}
           />
-          <select
-            value={this.props.status}
-            className="u-margin-left"
-            style={{"verticalAlign":"middle"}}
-            name="status"
-            onChange={e => this.props.onChange(e, this.props.id)}
-          >
-            <option value={NotTested}>{NotTested}</option>
-            <option value={Failed}>{Failed}</option>
-            <option value={Passed}>{Passed}</option>
-          </select>
         </td>
         <td className="table-id-column u-center">
           <button

@@ -2,7 +2,7 @@ import React from "react";
 import TextArea from "./TextArea";
 import Status from './Status';
 
-const BugRow = ({
+const BugRowContainer = ({
   caseId,
   id,
   description,
@@ -41,4 +41,4 @@ const BugRow = ({
   </tr>
 );
 
-export default BugRow;
+export default BugRowContainer;

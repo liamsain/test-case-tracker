@@ -18,11 +18,16 @@ class Todos extends React.Component {
           this.state.showTodos &&
           <div className="animated fadeInUp faster">
             <ul>
-              <li>enhance bug tracking feature</li>
+              <li>
+                support following props in ui: blocker, vsts id, last tested date
+              </li>
               <li>support mobile device width</li>
+              <li>Add date last tested prop to bugs</li>
+              <li>update export txt to include bugs</li>
+              <li>export only bugs txt button</li>
+              <li>import excel files</li>
               <li>write unit tests</li>
               <li>refactor components</li>
-              <li>import/ export excel files</li>
             </ul>
           </div>
         }

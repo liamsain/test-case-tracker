@@ -11,5 +11,6 @@ export const getNewCaseRow = id => ({
   iPadTested: false,
   desktopTested: false,
   status: NotTested,
-  bugs: []
+  bugs: [],
+  statusLastUpdatedOn: null
 });

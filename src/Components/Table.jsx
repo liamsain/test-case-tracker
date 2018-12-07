@@ -70,6 +70,7 @@ class Table extends Component {
                     description={x.description}
                     onChange={this.props.onBugChange}
                     onDelete={this.props.onDeleteBug}
+                    status={x.status}
                   />)
               }
             </tbody>

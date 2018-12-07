@@ -70,7 +70,7 @@ class Controls extends Component {
                 className="button-warning pure-button u-margin-left"
                 onClick={() => document.getElementById("jsonFileInput").click()}
               >
-                Import json
+                Import JSON
               </button>
               {/* <button
                 className="button-warning pure-button u-margin-left"
@@ -82,13 +82,19 @@ class Controls extends Component {
                 className="button-secondary pure-button u-margin-left"
                 onClick={this.props.onExportJson}
               >
-                Export json
+                Export JSON
               </button>
               <button
                 className="button-secondary pure-button u-margin-left"
                 onClick={this.props.onExportTxt}
               >
-                Export txt
+                Export TXT
+              </button>
+              <button
+                className="button-secondary pure-button u-margin-left"
+                onClick={this.props.onExportXlsx}
+              >
+                Export XLSX
               </button>
               {/* <button
                 className="button-secondary pure-button u-margin-left"
