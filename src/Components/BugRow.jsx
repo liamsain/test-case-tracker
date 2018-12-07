@@ -1,6 +1,6 @@
 import React from "react";
 import TextArea from "./TextArea";
-import Status from './Status';
+import Status from "./Status";
 
 const BugRow = ({
   caseId,
@@ -9,7 +9,9 @@ const BugRow = ({
   onChange,
   onDelete,
   itemNumber,
-  status
+  status,
+  lastTested,
+  isBlocker
 }) => (
   <tr className="animated fadeIn faster">
     <td />
@@ -22,13 +24,27 @@ const BugRow = ({
         label={`Bug ${itemNumber}`}
       />
     </td>
-    <td />
-    <td />
     <td>
-      <Status
-        onChange={e => onChange(e, caseId, id)}
-        status={status}
-      />
+      <div>
+        <strong>Blocker?</strong>
+      </div>
+      <label className="switch">
+        <input
+          type="checkbox"
+          name="isBlocker"
+          onChange={e => onChange(e, caseId, id)}
+          checked={isBlocker}
+        />
+        <span className="slider round" />
+      </label>
+    </td>
+    <td>
+      <small>Last tested:</small>
+      <br />
+      <small>{lastTested}</small>
+    </td>
+    <td>
+      <Status onChange={e => onChange(e, caseId, id)} status={status} />
     </td>
     <td>
       <button

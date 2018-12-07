@@ -60,6 +60,11 @@ class App extends Component {
       .find(testCase => testCase.id === caseId)
       .bugs.find(bug => bug.id === bugId);
     bug[e.target.name] = e.target.value;
+    if (e.target.type === "checkbox") {
+      bug[e.target.name] = !bug[e.target.name];
+    } else {
+      bug[e.target.name] = e.target.value;
+    }
     if(e.target.name === "status"){
       bug.lastTested = moment().format('llll');
     }
@@ -238,7 +243,7 @@ class App extends Component {
           onExportXlsx={this.exportXlsx}
         />
         <br />
-        <TestCaseAndBugContainer
+        <Table
           rows={this.state.rows}
           onCaseChange={this.onCaseChange}
           onBugChange={this.onBugChange}
@@ -246,6 +251,8 @@ class App extends Component {
           onAddBug={this.addBug}
           onDeleteBug={this.deleteBug}
         />
+        <br />
+
         <button
           className="button-secondary pure-button important-active-green"
           disabled={this.addButtonIsDisabled()}

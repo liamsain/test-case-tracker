@@ -55,7 +55,7 @@ class Controls extends Component {
   render() {
     return (
       <Grid fluid>
-        <Row>
+        <Row between="lg">
           <Col xs={6} sm={3} md={2}  lg={1} >
             <button
               className="button-secondary pure-button"
@@ -88,7 +88,7 @@ class Controls extends Component {
               Export XLSX
             </button>
           </Col>
-          <Col xs={6} sm={3} mdOffset={1} md={2} lg={1} lgOffset={2}>
+          <Col xs={6} sm={3} mdOffset={1} md={2} lg={1} lgOffset={7}>
             <button
               className="button-danger pure-button"
               onClick={this.props.onResetData}

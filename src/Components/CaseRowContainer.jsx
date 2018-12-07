@@ -29,7 +29,7 @@ class CaseRowContainer extends Component {
               name="expectedResult"
             />
           </Col>
-          <Col xs={12} lg={2} >
+          <Col xs={6} lg={2} >
             <Row middle="xs"  className="u-margin-top-sm">
               <Col xs={6}>
                 <button
@@ -71,7 +71,7 @@ class CaseRowContainer extends Component {
               </Col>
             </Row>
           </Col>
-          <Col xs={12} lg={2} lgOffset={2} className="u-margin-top">
+          <Col xs={3} lg={2} lgOffset={2} className="u-margin-top">
             <Status
               onChange={e => this.props.onChange(e, this.props.id)}
               status={this.props.status}

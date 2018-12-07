@@ -71,6 +71,8 @@ class Table extends Component {
                     onChange={this.props.onBugChange}
                     onDelete={this.props.onDeleteBug}
                     status={x.status}
+                    lastTested={x.lastTested}
+                    isBlocker={x.isBlocker}
                   />)
               }
             </tbody>
