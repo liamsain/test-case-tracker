@@ -7,6 +7,7 @@ import Todos from './Components/Todos';
 import { csvFileHeader } from "./Constants/csvFileHeader";
 import { getNewCaseRow } from './Constants/newCaseRow';
 import { getNewBugRow } from './Constants/newBugRow';
+import { v1 } from 'uuid';
 
 class App extends Component {
   constructor() {
@@ -25,11 +26,10 @@ class App extends Component {
     }
   }
 
-  onAddBug = caseId => {
+  addBug = caseId => {
     const newState = this.state;
     const row = newState.rows.find(x => x.id === caseId);
-    let newBugId = row.bugs.length + 1;
-    row.bugs.push(getNewBugRow(newBugId, caseId));
+    row.bugs.push(getNewBugRow(v1(), caseId));
     this.setState(newState);
   };
 
@@ -53,24 +53,23 @@ class App extends Component {
     window.localStorage["test-cases"] = JSON.stringify(newState);
   }
 
-  onDeleteCase = id => {
+  deleteCase = id => {
     const newState = this.state;
     newState.rows = this.state.rows.filter(x => x.id !== id);
     this.setState(newState);
     window.localStorage["test-cases"] = JSON.stringify(newState);
   };
 
-  onDeleteBug = (caseId, bugId) => {
+  deleteBug = (caseId, bugId) => {
     const newState = this.state;
     const testCase = newState.rows.find(testCase => testCase.id === caseId);
     testCase.bugs = testCase.bugs.filter(bug => bug.id !== bugId);
     this.setState(newState);
   }
 
-  onAddNewRow = () => {
+  addNewRow = () => {
     const newState = this.state;
-    const id = newState.rows.length + 1;
-    newState.rows.push(getNewCaseRow(id));
+    newState.rows.push(getNewCaseRow(v1()));
     this.setState(newState);
   };
 
@@ -86,9 +85,11 @@ class App extends Component {
     el.click();
     document.body.removeChild(el);
   };
+
   exportJson = () => {
     this.exportData("json", JSON.stringify(this.state, null, "\t"));
   };
+
   exportTxt = () => {
     var txtFileContent = this.state.rows
       .map(
@@ -100,6 +101,7 @@ class App extends Component {
       .join("\r\n");
     this.exportData("txt", txtFileContent);
   };
+
   exportCsv = () => {
     let csvFileContent = csvFileHeader;
 
@@ -140,6 +142,7 @@ class App extends Component {
     window.localStorage["test-cases"] = JSON.stringify(this.state)
     this.setState(newState);
   }
+  
   render() {
     return (
       <div className="animated fadeIn">
@@ -150,7 +153,7 @@ class App extends Component {
           />
         </div>
         <Controls
-          onAddNewRow={this.onAddNewRow}
+          onAddNewRow={this.addNewRow}
           onExportJson={this.exportJson}
           onExportTxt={this.exportTxt}
           onResetData={this.clearCache}
@@ -161,14 +164,14 @@ class App extends Component {
           rows={this.state.rows}
           onCaseChange={this.onCaseChange}
           onBugChange={this.onBugChange}
-          onDeleteCase={this.onDeleteCase}
-          onAddBug={this.onAddBug}
-          onDeleteBug={this.onDeleteBug}
+          onDeleteCase={this.deleteCase}
+          onAddBug={this.addBug}
+          onDeleteBug={this.deleteBug}
         />
         <button
           className="button-secondary pure-button important-active-green"
           disabled={this.addButtonIsDisabled()}
-          onClick={this.onAddNewRow}
+          onClick={this.addNewRow}
         >
           Add test case
         </button>

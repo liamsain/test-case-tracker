@@ -1,7 +1,7 @@
 import React from 'react';
 import TextArea from './TextArea';
 
-const BugRow = ({ caseId, id, description, onChange, onDelete }) => (
+const BugRow = ({ caseId, id, description, onChange, onDelete, itemNumber }) => (
   <tr className="animated fadeIn faster">
     <td></td>
     <td>
@@ -10,7 +10,7 @@ const BugRow = ({ caseId, id, description, onChange, onDelete }) => (
         shouldFocusOnCreate={description.length === 0}
         name="description"
         onChange={e => onChange(e, caseId, id)}
-        label={`Bug ${id}`}
+        label={`Bug ${itemNumber}`}
       />
     </td>
     <td></td>

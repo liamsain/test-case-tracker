@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class EditableTitle extends React.Component {
   constructor(props) {
@@ -8,22 +8,38 @@ class EditableTitle extends React.Component {
   render() {
     return (
       <div>
-        {
-          this.state.editMode &&
-          <form className="pure-form animated fadeIn" onSubmit={e => { e.preventDefault();this.setState({ editMode: false }) }} >
-            <input autoFocus type="text" value={this.props.value} onChange={this.props.onChange} />
-            <button type="submit" className="pure-button u-margin-left">Save</button>
+        {this.state.editMode && (
+          <form
+            className="pure-form animated fadeIn"
+            onSubmit={e => {
+              e.preventDefault();
+              this.setState({ editMode: false });
+            }}
+          >
+            <input
+              autoFocus
+              type="text"
+              value={this.props.value}
+              onChange={this.props.onChange}
+              onBlur={() => this.setState({ editMode: false })}
+            />
+            <button type="submit" className="pure-button u-margin-left">
+              Save
+            </button>
           </form>
-        }
-        {
-          !this.state.editMode &&
-          <div
-            style={{"cursor":"pointer"}}
-            onClick={() => this.setState({ editMode: true })}>
-            <h1>{this.props.value}</h1>
-            <small>edit</small>
-          </div>
-        }
+        )}
+        {!this.state.editMode && (
+          <span
+            className="headline"
+            onClick={() => this.setState({ editMode: true })}
+            style={{ cursor: "pointer" }}
+          >
+            <h1 onClick={() => this.setState({ editMode: true })}>
+              {this.props.value}
+            </h1>
+            <small>click to edit</small>
+          </span>
+        )}
       </div>
     );
   }

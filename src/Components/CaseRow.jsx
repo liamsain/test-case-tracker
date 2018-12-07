@@ -16,7 +16,7 @@ class CaseRow extends Component {
             onChange={e => this.props.onChange(e, this.props.id)}
             value={this.props.case}
             name="case"
-            label={`Test case ${this.props.id}`}
+            label={`Test case ${this.props.itemNumber}`}
             shouldFocusOnCreate={this.props.case.length === 0}
           />
         </td>

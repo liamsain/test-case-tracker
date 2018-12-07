@@ -100,3 +100,9 @@ table {
 .u-margin-top{
   margin-top: 2rem;
 }
+
+.headline h1, .headline small {
+  display: inline;
+}
+.headline small {
+}
