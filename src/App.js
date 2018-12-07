@@ -9,7 +9,7 @@ import { getNewCaseRow } from "./Constants/newCaseRow";
 import { getNewBugRow } from "./Constants/newBugRow";
 import { v1 } from "uuid";
 import XLSX from "xlsx";
-// import TestCaseAndBugContainer from './Components/TestCaseAndBugContainer';
+import TestCaseAndBugContainer from './Components/TestCaseAndBugContainer';
 import moment from 'moment';
 
 class App extends Component {
@@ -237,7 +237,8 @@ class App extends Component {
           onImportJson={this.importJson}
           onExportXlsx={this.exportXlsx}
         />
-        <Table
+        <br />
+        <TestCaseAndBugContainer
           rows={this.state.rows}
           onCaseChange={this.onCaseChange}
           onBugChange={this.onBugChange}

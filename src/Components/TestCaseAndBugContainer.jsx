@@ -41,7 +41,6 @@ class TestCaseAndBugContainer extends Component {
                     case={x.case}
                     bugs={x.bugs}
                     expectedResult={x.expectedResult}
-                    actualResult={x.actualResult}
                     iPhoneTested={x.iPhoneTested}
                     zebraTested={x.zebraTested}
                     iPadTested={x.iPadTested}

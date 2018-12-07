@@ -10,7 +10,7 @@ class CaseRowContainer extends Component {
     const addBugButtonDisabled =
       lastBug !== undefined && lastBug.description.length < 1;
     return (
-      <Grid fluid>
+      <Grid fluid className="u-margin-top">
         <Row>
           <Col xs={12} md={6} lg={3}>
             <TextArea
@@ -29,55 +29,53 @@ class CaseRowContainer extends Component {
               name="expectedResult"
             />
           </Col>
-          <Col xs={6} lg={2}>
-            <button
-              className="button-danger pure-button"
-              onClick={() => this.props.onAddBug(this.props.id)}
-              disabled={addBugButtonDisabled}
-            >
-              + Bug
-            </button>
+          <Col xs={12} lg={2} >
+            <Row middle="xs"  className="u-margin-top-sm">
+              <Col xs={6}>
+                <button
+                  className="button-danger pure-button"
+                  onClick={() => this.props.onAddBug(this.props.id)}
+                  disabled={addBugButtonDisabled}
+                >
+                  + Bug
+                </button>
+              </Col>
+              <Col xs={6}>
+                <input
+                  type="checkbox"
+                  name="iPhoneTested"
+                  onChange={e => this.props.onChange(e, this.props.id)}
+                  checked={this.props.iPhoneTested}
+                /> iPhone
+                <br />
+                <input
+                  type="checkbox"
+                  name="zebraTested"
+                  onChange={e => this.props.onChange(e, this.props.id)}
+                  checked={this.props.zebraTested}
+                /> Zebra
+                <br />
+                <input
+                  type="checkbox"
+                  name="iPadTested"
+                  onChange={e => this.props.onChange(e, this.props.id)}
+                  checked={this.props.iPadTested}
+                /> iPad
+                <br />
+                <input
+                  type="checkbox"
+                  name="desktopTested"
+                  onChange={e => this.props.onChange(e, this.props.id)}
+                  checked={this.props.desktopTested}
+                /> Desktop
+              </Col>
+            </Row>
           </Col>
-          <Col xs={6} lg={2}>
-            <input
-              type="checkbox"
-              name="iPhoneTested"
-              onChange={e => this.props.onChange(e, this.props.id)}
-              checked={this.props.iPhoneTested}
-            />{" "}
-            iPhone
-            <br />
-            <input
-              type="checkbox"
-              name="zebraTested"
-              onChange={e => this.props.onChange(e, this.props.id)}
-              checked={this.props.zebraTested}
-            />{" "}
-            Zebra
-            <br />
-            <input
-              type="checkbox"
-              name="iPadTested"
-              onChange={e => this.props.onChange(e, this.props.id)}
-              checked={this.props.iPadTested}
-            />{" "}
-            iPad
-            <br />
-            <input
-              type="checkbox"
-              name="desktopTested"
-              onChange={e => this.props.onChange(e, this.props.id)}
-              checked={this.props.desktopTested}
-            />{" "}
-            Desktop
-          </Col>
-          <Col xs={6} lg={2}>
+          <Col xs={12} lg={2} lgOffset={2} className="u-margin-top">
             <Status
               onChange={e => this.props.onChange(e, this.props.id)}
               status={this.props.status}
             />
-          </Col>
-          <Col>
             <button
               className="button-danger pure-button u-margin-left important-active-red"
               onClick={() => this.props.onDelete(this.props.id)}
@@ -86,7 +84,6 @@ class CaseRowContainer extends Component {
             </button>
           </Col>
         </Row>
-        <hr/>
       </Grid>
     );
   }

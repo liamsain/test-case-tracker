@@ -101,6 +101,9 @@ table {
   margin-top: 2rem;
 }
 
+.u-margin-top-sm{
+  margin-top: 1rem;
+}
 .headline h1, .headline small {
   display: inline;
 }
