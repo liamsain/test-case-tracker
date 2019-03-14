@@ -8,10 +8,6 @@ import { getNewCaseRow } from "./Constants/newCaseRow";
 import { getNewBugRow } from "./Constants/newBugRow";
 import { v1 } from "uuid";
 import XLSX from "xlsx";
-<<<<<<< HEAD
-=======
-// import TestCaseAndBugContainer from './Components/TestCaseAndBugContainer';
->>>>>>> 4358ce97d560da828633a2ca61e7986f70c10a95
 import moment from 'moment';
 
 class App extends Component {
