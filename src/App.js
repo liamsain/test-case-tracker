@@ -3,13 +3,11 @@ import "./App.css";
 import EditableTitle from "./Components/EditableTitle";
 import Table from "./Components/Table";
 import Controls from "./Components/Controls";
-import Todos from "./Components/Todos";
 import { csvFileHeader } from "./Constants/csvFileHeader";
 import { getNewCaseRow } from "./Constants/newCaseRow";
 import { getNewBugRow } from "./Constants/newBugRow";
 import { v1 } from "uuid";
 import XLSX from "xlsx";
-import TestCaseAndBugContainer from './Components/TestCaseAndBugContainer';
 import moment from 'moment';
 
 class App extends Component {
@@ -260,9 +258,6 @@ class App extends Component {
         >
           Add test case
         </button>
-        <div className="u-margin-top">
-          <Todos />
-        </div>
       </div>
     );
   }
