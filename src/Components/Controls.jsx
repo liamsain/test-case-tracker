@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { isValidJson } from "../utils/isValidJson";
 import { csvContentHeaderIsCorrect } from "../Constants/csvFileHeader";
-import { Grid, Row, Col } from "react-flexbox-grid";
 
 class Controls extends Component {
   state = {
@@ -54,74 +53,63 @@ class Controls extends Component {
   };
   render() {
     return (
-      <Grid fluid>
-        <Row between="lg">
-          <Col xs={6} sm={3} md={2}  lg={1} >
-            <button
-              className="button-secondary pure-button"
-              onClick={() => document.getElementById("jsonFileInput").click()}
-            >
-              Import JSON
-            </button>
-          </Col>
-          <Col xs={6} sm={3} md={2} lg={1} >
-            <button
-              className="button-secondary pure-button"
-              onClick={this.props.onExportJson}
-            >
-              Export JSON
-            </button>
-          </Col>
-          <Col xs={6} sm={3} md={2} lg={1} >
-            <button
-              className="button-secondary pure-button"
-              onClick={this.props.onExportTxt}
-            >
-              Export TXT
-            </button>
-          </Col>
-          <Col xs={6} sm={3} md={2} lg={1} >
-            <button
-              className="button-secondary pure-button"
-              onClick={this.props.onExportXlsx}
-            >
-              Export XLSX
-            </button>
-          </Col>
-          <Col xs={6} sm={3} mdOffset={1} md={2} lg={1} lgOffset={7}>
-            <button
-              className="button-danger pure-button"
-              onClick={this.props.onResetData}
-            >
-              Reset data
-            </button>
-          </Col>
-        </Row>
-        <input
-          type="file"
-          id="jsonFileInput"
-          className="u-display-none"
-          onChange={this.onJsonFileImportChange}
-        />
-        <input
-          type="file"
-          id="csvFileInput"
-          className="u-display-none"
-          onChange={this.onCsvFileImportChange}
-        />
-        <input
-          type="file"
-          id="csvFileInput"
-          className="u-display-none"
-          onChange={this.onCsvFileImportChange}
-        />
-        <input
-          type="file"
-          id="jsonFileInput"
-          className="u-display-none"
-          onChange={this.onJsonFileImportChange}
-        />
-      </Grid>
+      <div>
+          <button
+            className="button-secondary pure-button"
+            onClick={() => document.getElementById("jsonFileInput").click()}
+          >
+            Import JSON
+          </button>
+          <button
+            className="button-secondary pure-button  u-margin-left"
+            onClick={this.props.onExportJson}
+          >
+            Export JSON
+          </button>
+          <button
+            className="button-secondary pure-button u-margin-left"
+            onClick={this.props.onExportTxt}
+          >
+            Export TXT
+          </button>
+          <button
+            className="button-secondary pure-button u-margin-left"
+            onClick={this.props.onExportXlsx}
+          >
+            Export XLSX
+          </button>
+          <button
+            className="button-danger pure-button"
+            style={{"float": "right"}}
+            onClick={this.props.onResetData}
+          >
+            Reset data
+          </button>
+      <input
+        type="file"
+        id="jsonFileInput"
+        className="u-display-none"
+        onChange={this.onJsonFileImportChange}
+      />
+      <input
+        type="file"
+        id="csvFileInput"
+        className="u-display-none"
+        onChange={this.onCsvFileImportChange}
+      />
+      <input
+        type="file"
+        id="csvFileInput"
+        className="u-display-none"
+        onChange={this.onCsvFileImportChange}
+      />
+      <input
+        type="file"
+        id="jsonFileInput"
+        className="u-display-none"
+        onChange={this.onJsonFileImportChange}
+      />
+      </div>
     );
   }
 }
