@@ -36,6 +36,7 @@ class App extends Component {
   };
 
   onCaseChange = (e, id) => {
+    
     const newState = this.state;
     const row = newState.rows.find(x => x.id === id);
     if (e.target.type === "checkbox") {
@@ -86,7 +87,9 @@ class App extends Component {
 
   addNewRow = () => {
     const newState = this.state;
-    newState.rows.push(getNewCaseRow(v1()));
+    const caseRow = getNewCaseRow(v1());
+    
+    newState.rows.push(caseRow);
     this.setState(newState);
   };
 
@@ -178,10 +181,10 @@ class App extends Component {
         x.expectedResult,
         x.statusLastUpdatedOn,
         x.status,
-        x.desktopTested ? "Passed" : "Failed",
-        x.iPhoneTested ? "Passed" : "Failed",
-        x.zebraTested ? "Passed" : "Failed",
-        x.iPadTested ? "Passed" : "Failed"
+        x.desktopTested,
+        x.iPhoneTested,
+        x.zebraTested,
+        x.iPadTested
       ])
     );
 
