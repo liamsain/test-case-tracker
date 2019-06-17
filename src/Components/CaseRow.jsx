@@ -57,6 +57,12 @@ class CaseRow extends Component {
           /> iPad<br />
           <input
             type="checkbox"
+            name="chromeV46Tested"
+            onChange={e => this.props.onChange(e, this.props.id)}
+            checked={this.props.chromeV46Tested}
+            /> Chrome v46<br />
+          <input
+            type="checkbox"
             name="desktopTested"
             onChange={e => this.props.onChange(e, this.props.id)}
             checked={this.props.desktopTested}

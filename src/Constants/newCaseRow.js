@@ -6,6 +6,7 @@ export const getNewCaseRow = id => ({
   id,
   case: "",
   expectedResult: "",
+  chromeV46Tested: false,
   iPhoneTested: false,
   zebraTested: false,
   iPadTested: false,
