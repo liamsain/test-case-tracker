@@ -38,7 +38,6 @@ class Table extends Component {
                 <th></th>
                 <th></th>
                 <th>Devices</th>
-                <th>Status</th>
                 <th></th>
               </tr>
             </thead>
@@ -56,6 +55,7 @@ class Table extends Component {
                     iPhoneTested={x.iPhoneTested}
                     zebraTested={x.zebraTested}
                     iPadTested={x.iPadTested}
+                    chromeV46Tested={x.chromeV46Tested}
                     desktopTested={x.desktopTested}
                     status={x.status}
                     onChange={this.props.onCaseChange}

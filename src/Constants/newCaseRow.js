@@ -13,5 +13,5 @@ export const getNewCaseRow = id => ({
   desktopTested: false,
   status: NotTested,
   bugs: [],
-  statusLastUpdatedOn: null
+  statusLastUpdatedOn: null,
 });

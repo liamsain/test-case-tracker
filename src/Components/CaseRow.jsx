@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import TextArea from "./TextArea";
-import Status from './Status';
+import DeviceStatus from './DeviceStatus';
 
 class CaseRow extends Component {
 
   render() {
     const bugs = this.props.bugs;
     const lastBug = bugs[bugs.length - 1];
-    const addBugButtonDisabled =  lastBug !== undefined && lastBug.description.length < 1;
+    const addBugButtonDisabled = lastBug !== undefined && lastBug.description.length < 1;
     return (
       <tr className="animated fadeIn faster">
         <td>
@@ -37,43 +37,43 @@ class CaseRow extends Component {
             </button>
         </td>
         <td>
-          <input
-            type="checkbox"
-            name="iPhoneTested"
-            onChange={e => this.props.onChange(e, this.props.id)}
-            checked={this.props.iPhoneTested}
-          /> iPhone<br />
-          <input
-            type="checkbox"
-            name="zebraTested"
-            onChange={e => this.props.onChange(e, this.props.id)}
-            checked={this.props.zebraTested}
-          /> Zebra<br />
-          <input
-            type="checkbox"
-            name="iPadTested"
-            onChange={e => this.props.onChange(e, this.props.id)}
-            checked={this.props.iPadTested}
-          /> iPad<br />
-          <input
-            type="checkbox"
-            name="chromeV46Tested"
-            onChange={e => this.props.onChange(e, this.props.id)}
-            checked={this.props.chromeV46Tested}
-            /> Chrome v46<br />
-          <input
-            type="checkbox"
-            name="desktopTested"
-            onChange={e => this.props.onChange(e, this.props.id)}
-            checked={this.props.desktopTested}
-          /> Desktop
-        </td>
-        <td className="table-status-column">
-          <Status
-            onChange={e => this.props.onChange(e, this.props.id)}
-            status={this.props.status}
-          />
-        </td>
+          {
+            [
+              {
+                deviceName: "iPhone",
+                name: "iPhoneTested",
+                value: this.props.iPhoneTested
+              },
+              {
+                deviceName: "Zebra",
+                name: "zebraTested",
+                value: this.props.zebraTested
+              },
+              {
+                deviceName: "iPad",
+                name: "iPadTested",
+                value: this.props.iPadTested
+              },
+              {
+                deviceName: "Chrome v46",
+                name: "chromeV46Tested",
+                value: this.props.chromeV46Tested
+              },
+              {
+                deviceName: "Desktop",
+                name: "desktopTested",
+                value: this.props.desktopTested
+              }
+            ].map(x => 
+            (<DeviceStatus
+              key={`${this.props.id}-${x.name}`}
+              deviceName={x.deviceName}
+              name={x.name}
+              onChange={ value => this.props.onChange({target:{name: x.name, value}}, this.props.id)}
+              value={x.value}
+            />))
+          }
+       </td>
         <td className="table-id-column u-center">
           <button
             className="button-danger pure-button u-margin-left important-active-red"
